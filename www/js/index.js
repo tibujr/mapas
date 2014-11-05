@@ -50,10 +50,20 @@ var app = {
         };
 
         var map = new google.maps.Map(document.getElementById("geolocation"), mapOptions);*/
-        var element = document.getElementById('geolocation');
+        /*var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                             'Longitude: ' + position.coords.longitude     + '<br />' +
-                            '<hr />'      + element.innerHTML;
+                            '<hr />'      + element.innerHTML;*/
+
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
     },
 
     onError: function(error) {
