@@ -41,12 +41,12 @@ var app = {
 
         var longitude = position.coords.longitude;
         var latitude = position.coords.latitude;
-        var latLong =  new google.maps.LatLng(longitude, latitude);
+        var latLong = new google.maps.LatLng(latitude, longitude);
 
         var mapOptions = {
             center: latLong,
             zoom: 16,
-            mapTypeId: google.maps.mapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         var map=new google.maps.Map(document.getElementById("geolocation"), mapOptions);
