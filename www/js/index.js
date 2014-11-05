@@ -34,12 +34,12 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //llamar location
-        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
+        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
     },
 
     onSuccess: function(position) {
 
-        var longitude = position.coords.longitude;
+        /*var longitude = position.coords.longitude;
         var latitude = position.coords.latitude;
         var latLong = new google.maps.LatLng(latitude, longitude);
 
@@ -49,7 +49,11 @@ var app = {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        var map=new google.maps.Map(document.getElementById("geolocation"), mapOptions);
+        var map = new google.maps.Map(document.getElementById("geolocation"), mapOptions);*/
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                            'Longitude: ' + position.coords.longitude     + '<br />' +
+                            '<hr />'      + element.innerHTML;
     },
 
     onError: function(error) {
