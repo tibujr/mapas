@@ -34,7 +34,8 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //llamar location
-        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
+        //navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
+        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{timeout: 5000, enableAccuracy: false});
     },
 
     onSuccess: function(position) {
@@ -50,6 +51,7 @@ var app = {
         };
 
         var map = new google.maps.Map(document.getElementById("geolocation"), mapOptions);*/
+
         /*var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                             'Longitude: ' + position.coords.longitude     + '<br />' +
@@ -64,10 +66,32 @@ var app = {
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
+
+        app.initMap(position.coords.latitude, position.coords.longitude);
     },
 
     onError: function(error) {
         alert('code: '+ error.code  + '\n' + 'message: ' + error.message + '\n');
-    }
+    },
+
+    initMap: function(lat, long){
+        var options = {
+            zoom: 16,
+            center: new google.maps.LatLng(lat, long),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };  
+
+        var map = new google.maps.Map(document.getElementById('map'), options);
+    
+        var markerPoint = new google.maps.LatLng(lat, long);
+
+        var marker = new google.maps.Marker({
+
+            position: markerPoint,
+            map: map,
+            title: 'Device\'s Location'
+
+        });
+   }
 
 };

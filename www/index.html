@@ -25,8 +25,22 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
+        <style type="text/css">
+            #map{
+                width: 280px;
+                height: 230px;
+                display: block;
+                margin: 5px auto;
+                position: relative;
+            }
+
+            #geolocation{
+                font-size: 15px;
+            }
+        </style>
     </head>
     <body>
+        <div id='map'></div> 
         <div id="geolocation" style="width:540px; height:960px;"></div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
