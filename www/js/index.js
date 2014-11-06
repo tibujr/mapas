@@ -34,8 +34,9 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //llamar location
-        navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
-        //navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{timeout: 5000, enableAccuracy: false});
+        //navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
+        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError,{desiredAccuracy:20, maxWait:15000);
+        //navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{timeout: 5000, enableAccuracy: false, maximumAge: 0});
     },
 
     onSuccess: function(position) {
