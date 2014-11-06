@@ -33,7 +33,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
             navigator.geolocation.clearWatch(watchID);
             foundPosition(position);
         } else {
-            //geoprogress(position);
+            console.log("en progreso: "+ position)
 
         }
     }
@@ -126,10 +126,6 @@ var app = {
 
     onError: function(error) {
         alert('code: '+ error.code  + '\n' + 'message: ' + error.message + '\n');
-    },
-
-    onProgress: function(position) {
-        console.log("geoprogress : "+ position);
     },
 
     initMap: function(lat, long){
