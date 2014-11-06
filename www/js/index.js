@@ -89,7 +89,7 @@ var app = {
     onDeviceReady: function() {
         //llamar location
         //navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError,{enableHighAccuracy:true});
-        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 20000 });
+        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
     },
 
     onSuccess: function(position) {
