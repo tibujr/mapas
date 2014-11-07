@@ -124,8 +124,22 @@ var app = {
         app.initMap(position.coords.latitude, position.coords.longitude);
     },
 
+    onSuccessA: function(position) {
+
+        var puntos = document.getElementById('puntos');
+        puntos.innerHTML = cont+ ' OK <br />';
+        puntos.innerHTML = 'x: '           + position.coords.latitude              + '<br />' +
+                            'y: '          + position.coords.longitude             + '<br />' ;
+
+    },
+
     onError: function(error) {
         alert('code: '+ error.code  + '\n' + 'message: ' + error.message + '\n');
+    },
+
+    onErrorA: function(error) {
+        var puntos = document.getElementById('puntos');
+        puntos.innerHTML = cont+ ' NO <br />';
     },
 
     initMap: function(lat, long){
@@ -149,3 +163,12 @@ var app = {
    }
 
 };
+
+var cont = 0;
+function contador(){
+    cont++;
+    navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onErrorA, { desiredAccuracy: 50, maxWait: 30000 });
+    /*var contador = document.getElementById("contador");
+    contador.value = cont;*/
+    
+}
