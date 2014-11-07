@@ -40,7 +40,7 @@
                 height:460px;
             }
             #puntos{
-                font-size: 15px;
+                font-size: 20px;
                 width:540px; 
                 height:460px;
             }
@@ -48,22 +48,23 @@
         <script type="text/javascript">
             var cont = 0;
             function contador(){
-                var a = position.coords.latitude+', '+position.coords.longitude+'<br />';
                 var puntos = document.getElementById("puntos");
-                 puntos.innerHTML = a;
+                puntos.innerHTML = cont+' <br />';
+                puntos.innerHTML = 'X: ' + position.coords.latitude + '<br />' +
+                                    'Y: ' + position.coords.longitude + '<br />';
                 /*var contador = document.getElementById("contador");
-                contador.value = cont;
-                cont++;*/
+                contador.value = cont;*/
+                cont++;
             }
         </script>
     </head>
     <body onLoad="setInterval('contador()',60000);">
-        <form>
+        <!--<form>
             <label for="contador">Contador:</label><input type="text" id="contador">
-        </form>
-        <div id='puntos'></div>
+        </form>-->
         <div id='map'></div> 
         <div id="geolocation" style=""></div>
+        <div id='puntos'></div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDrsti2iY75NsnEAHWW-1OepuNVuQpTOFE&sensor=false"> </script>
