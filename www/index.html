@@ -37,7 +37,7 @@
             #geolocation{
                 font-size: 15px;
                 width:540px; 
-                height:460px;
+                height:200px;
             }
             #puntos{
                 font-size: 20px;
@@ -46,15 +46,94 @@
             }
         </style>
         <script type="text/javascript">
+            
+
+            navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+                var lastCheckedPosition;
+                var locationEventCount = 0;
+
+                options = options || {};
+
+
+                var checkLocation = function (position) {
+                    lastCheckedPosition = position;
+                    ++locationEventCount;
+                    
+                    if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 0)) {
+                        clearTimeout(timerID);
+                        navigator.geolocation.clearWatch(watchID);
+                        foundPosition(position);
+                    } else {
+                        console.log("en progreso: "+ position)
+
+                    }
+                }
+
+
+                var stopTrying = function () {
+                    navigator.geolocation.clearWatch(watchID);
+                    foundPosition(lastCheckedPosition);
+                }
+
+
+                var onError = function (error) {
+                    clearTimeout(timerID);
+                    navigator.geolocation.clearWatch(watchID);
+                    geolocationError(error);
+                }
+
+
+                var foundPosition = function (position) {
+                    geolocationSuccess(position);
+                }
+
+
+                if (!options.maxWait) options.maxWait = 10000; // Default 10 seconds
+                if (!options.desiredAccuracy) options.desiredAccuracy = 20; // Default 20 meters
+                if (!options.timeout) options.timeout = options.maxWait; // Default to maxWait
+
+
+                options.maximumAge = 0; // Force current locations only
+                options.enableHighAccuracy = true; // Force high accuracy (otherwise, why are you using this function?)
+
+
+                var watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
+                var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
+            }
+
+
+
             var cont = 0;
+
+
             function contador(){
-                var puntos = document.getElementById("puntos");
-                puntos.innerHTML = cont+' <br />';
-                puntos.innerHTML = 'X: ' + position.coords.latitude + '<br />' +
-                                    'Y: ' + position.coords.longitude + '<br />';
+
+                navigator.geolocation.getAccurateCurrentPosition(onSuccess, onErrorr, { desiredAccuracy: 50, maxWait: 60000 });
+                
                 /*var contador = document.getElementById("contador");
                 contador.value = cont;*/
                 cont++;
+            }
+
+            onSuccess: function(position) {
+                var element = document.getElementById('geolocation');
+                /*element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                                    'Longitude: '          + position.coords.longitude             + '<br />' +
+                                    'Altitude: '           + position.coords.altitude              + '<br />' +
+                                    'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                                    'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                                    'Heading: '            + position.coords.heading               + '<br />' +
+                                    'Speed: '              + position.coords.speed                 + '<br />' +
+                                    'Timestamp: '          + position.timestamp                    + '<br />';*/
+                var puntos = document.getElementById("puntos");
+                puntos.innerHTML = cont+' PASO <br />';
+                puntos.innerHTML = 'X: ' + position.coords.latitude + '<br />' +
+                                    'Y: ' + position.coords.longitude + '<br />';
+            }
+
+            onErrorr: function(error) {
+                var puntos = document.getElementById("puntos");
+                puntos.innerHTML = cont+' ERROR <br />';
             }
         </script>
     </head>
