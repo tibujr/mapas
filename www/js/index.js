@@ -127,9 +127,10 @@ var app = {
     onSuccessA: function(position) {
 
         var puntos = document.getElementById('puntos');
-        puntos.innerHTML = cont+ ' OK <br />';
-        puntos.innerHTML = 'x: '           + position.coords.latitude              + '<br />' +
-                            'y: '          + position.coords.longitude             + '<br />' ;
+        //puntos.innerHTML = cont+ ' OK <br />';
+        a = a + 'x: '           + position.coords.latitude              + '<br />' +
+                            'y: '          + position.coords.longitude             + '<br /> <br />' ;
+        puntos.innerHTML = a
 
     },
 
@@ -139,7 +140,8 @@ var app = {
 
     onErrorA: function(error) {
         var puntos = document.getElementById('puntos');
-        puntos.innerHTML = cont+ ' NO <br />';
+        a = a + cont + ' NO <br />';
+        puntos.innerHTML = a;
     },
 
     initMap: function(lat, long){
@@ -163,6 +165,8 @@ var app = {
    }
 
 };
+
+var a = "";
 
 var cont = 0;
 function contador(){
