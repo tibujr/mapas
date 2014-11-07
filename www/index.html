@@ -39,9 +39,29 @@
                 width:540px; 
                 height:460px;
             }
+            #puntos{
+                font-size: 15px;
+                width:540px; 
+                height:460px;
+            }
         </style>
+        <script type="text/javascript">
+            var cont = 0;
+            function contador(){
+                var a = position.coords.latitude+', '+position.coords.longitude+'<br />';
+                var puntos = document.getElementById("puntos");
+                 puntos.innerHTML = a;
+                /*var contador = document.getElementById("contador");
+                contador.value = cont;
+                cont++;*/
+            }
+        </script>
     </head>
-    <body>
+    <body onLoad="setInterval('contador()',60000);">
+        <form>
+            <label for="contador">Contador:</label><input type="text" id="contador">
+        </form>
+        <div id='puntos'></div>
         <div id='map'></div> 
         <div id="geolocation" style=""></div>
         <script type="text/javascript" src="phonegap.js"></script>
