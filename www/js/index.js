@@ -171,7 +171,7 @@ var a = "";
 var cont = 0;
 function contador(){
     cont++;
-    navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onErrorA, { desiredAccuracy: 50, maxWait: 30000 });
+    navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onErrorA, { desiredAccuracy: 50, maxWait: 15000 });
     /*var contador = document.getElementById("contador");
     contador.value = cont;*/
     
