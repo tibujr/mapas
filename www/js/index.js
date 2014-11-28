@@ -140,7 +140,7 @@ var app = {
 
     onErrorA: function(error) {
         var puntos = document.getElementById('puntos');
-        a = a + cont + ' NO <br />';
+        a = a + cont + ' NO LOCALIZADO <br /> <br />';
         puntos.innerHTML = a;
     },
 
